@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CheckersBoard : MonoBehaviour
+public class TEST : MonoBehaviour
 {
 
     public Piece[,] pieces = new Piece[8, 8];
@@ -11,16 +11,22 @@ public class CheckersBoard : MonoBehaviour
 
     void start()
     {
+        Debug.Log("Start");
         GenerateBoard();
     }
-
+    void update()
+    {
+        Debug.Log("yep");
+    }
     private void GenerateBoard()
     {
         //Generate White Team
-        for(int y = 0; y < 3; y++)
+        for (int y = 0; y < 3; y++)
         {
-            for(int x= 0; x<8; x+= 2)
+            Debug.Log(y);
+            for (int x = 0; x < 8; x += 2)
             {
+                Debug.Log(x);
                 //Generate out piece
                 GeneratePiece(x, y);
             }
@@ -38,5 +44,6 @@ public class CheckersBoard : MonoBehaviour
 
     void MovePiece(Piece p, int x, int y)
     {
-        p.transform.position = (Vector3.right * x) + (Vector3.forward * y};
+        p.transform.position = (Vector3.right * x) + (Vector3.forward * y);
+    }
 }
