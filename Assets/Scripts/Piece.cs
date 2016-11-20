@@ -6,6 +6,76 @@ public class Piece : MonoBehaviour
     public bool isWhite;
     public bool isKing;
 
+    public bool IsForcedToMove(Piece[,] board, int x, int y)
+    {
+        if (isWhite || isKing)
+        {
+            //top left
+            if(x >= 2 && y <= 5)
+            {
+                Piece p = board[x - 1, y + 1];
+                //if ther is a pice, and it is not the same color as ours
+                if(p != null && p.isWhite != isWhite)
+                {
+                    //chieck if its possible to land after the jump
+                    if(board[x -2, y + 2] == null)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            //top right
+            if (x <= 5 && y <= 5)
+            {
+                Piece p = board[x + 1, y + 1];
+                //if ther is a pice, and it is not the same color as ours
+                if (p != null && p.isWhite != isWhite)
+                {
+                    //chieck if its possible to land after the jump
+                    if (board[x + 2, y + 2] == null)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        if(!isWhite || isKing)
+        {
+            //bottom left
+            if (x >= 2 && y >= 2)
+            {
+                Piece p = board[x - 1, y - 1];
+                //if ther is a pice, and it is not the same color as ours
+                if (p != null && p.isWhite != isWhite)
+                {
+                    //chieck if its possible to land after the jump
+                    if (board[x - 2, y - 2] == null)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            //bottom right
+            if (x <= 5 && y >= 2)
+            {
+                Piece p = board[x + 1, y - 1];
+                //if ther is a pice, and it is not the same color as ours
+                if (p != null && p.isWhite != isWhite)
+                {
+                    //chieck if its possible to land after the jump
+                    if (board[x + 2, y - 2] == null)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;  
+        
+    }
     public bool ValidMove(Piece[,] board, int x1, int y1, int x2, int y2)
     {
         // if you are moving on top of another piece
